@@ -13,5 +13,5 @@ git clone https://github.com/nd2204/nvim-conf %USERPROFILE%\AppData\Local\nvim &
 
 ### LINUX
 ```sh
-git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+git clone https://github.com/nd2204/nvim-conf ~/.config/nvim && nvim
 ```
