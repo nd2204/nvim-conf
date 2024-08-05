@@ -12,25 +12,25 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 local null_ls_servers = {
-    "mypy",
-    "ruff",
-    "prettier",
-    "black",
-    "stylua",
+  "mypy",
+  "ruff",
+  "prettier",
+  "black",
+  "stylua",
 }
 
 require("mason-null-ls").setup({
-    ensure_installed = null_ls_servers,
-    automatic_installation = true,
+  ensure_installed = null_ls_servers,
+  automatic_installation = true,
 })
 
 null_ls.setup({
-    debug = true,
-    sources = {
-        formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
-        formatting.black.with({ extra_args = { "--fast" } }),
-        formatting.stylua,
-        diagnostics.mypy,
-        diagnostics.ruff,
-    },
+  debug = true,
+  sources = {
+    formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+    formatting.black.with({ extra_args = { "--fast" } }),
+    formatting.stylua,
+    diagnostics.mypy,
+    diagnostics.ruff,
+  },
 })
