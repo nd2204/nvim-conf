@@ -12,7 +12,7 @@ local servers = {
   "html",
   "pyright",
   "rust_analyzer",
-  "emmet_language_server"
+  "emmet_language_server",
 }
 
 mason.setup({})

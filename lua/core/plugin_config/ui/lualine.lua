@@ -1,6 +1,6 @@
 local function get_current_dir()
   local cwd = vim.fn.getcwd()
-  local last_separator = 0 - string.find(string.reverse(cwd), "/")
+  local last_separator = string.find(string.reverse(cwd), "[\\|/]") * -1
   return [[ ]]..string.sub(cwd, last_separator + 1)
 end
 
