@@ -13,7 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local function is_enabled(plugin)
-  return Arunvi.plugins[plugin].enabled
+  return Arunvi.plugins[plugin].enable
 end
 
 -- Table of plugins
@@ -27,10 +27,6 @@ local plugins = {
   'lewis6991/impatient.nvim',
   'akinsho/toggleterm.nvim',
   'Wansmer/treesj',
-  {
-    'nd2204/quickimpl.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' }
-  },
   -- UIs
   {
     'nvim-telescope/telescope.nvim',
@@ -93,6 +89,25 @@ local plugins = {
   -- 'godlygeek/tabular',
   'preservim/vimux',
 }
+
+local ide = {
+  java = function()
+    table.insert(plugins, {
+      { 'mfussenegger/nvim-jdtls' }
+    })
+  end,
+  ccpp = function()
+    table.insert(plugins, {
+      { 'nd2204/quickimpl.nvim', dependencies = { 'nvim-treesitter/nvim-treesitter' } }
+    })
+  end
+}
+
+for _, v in pairs(Arunvi.plugins.env) do
+  if ide[v] ~= nil then
+    ide[v]()
+  end
+end
 
 local opts = {}
 

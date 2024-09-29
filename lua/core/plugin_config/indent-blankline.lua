@@ -22,7 +22,7 @@ ibl.setup {
   },
 
   indent = {
-    char = "", --┇, ▏
+    char = "▏", --┇, ▏
     highlight = { "IndentBlanklineChar" },
   },
 
@@ -32,7 +32,7 @@ ibl.setup {
   },
 
   scope = {
-    enabled = true,
+    enabled = false,
     show_start = false,
     show_end = false,
     highlight = "String",

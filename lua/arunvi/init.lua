@@ -12,7 +12,10 @@ Arunvi.option = {
 }
 
 Arunvi.plugins = {
-  lsp = {enable = false},
+  env = {
+    'java', 'ccpp'
+  },
+  lsp = {enable = true},
   notify = {enable = false},
   dap = {
     enable = false,

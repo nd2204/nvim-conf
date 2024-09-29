@@ -17,7 +17,6 @@ local null_ls_servers = {
   "prettier",
   "black",
   "stylua",
-  "checkmake"
 }
 
 require("mason-null-ls").setup({
