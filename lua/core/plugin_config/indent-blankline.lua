@@ -4,7 +4,7 @@ if not ok then
 end
 
 ibl.setup {
-  enabled = true,
+  enabled = false,
 
   exclude = {
     buftypes = { "terminal", "nofile"},

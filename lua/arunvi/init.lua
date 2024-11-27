@@ -27,7 +27,7 @@ Arunvi.plugins = {
     enable = true, rainbow = {enable = false},
   },
   project = {enable = true},
-  NvimTreeWidth = 30,
+  NvimTreeWidth = 40,
   toggleterm = {
     make = function()
       local Terminal = require('toggleterm.terminal').Terminal

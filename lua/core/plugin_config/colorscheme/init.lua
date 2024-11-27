@@ -51,7 +51,7 @@ hl(0, "PurpleItalic", {ctermfg = 175, bg = nil, fg = colors.purple })
 ---------------------------------------- Builtin ----------------------------------------
 hl(0, "Cursorline",         { bg = nil })
 hl(0, "CursorlineNr",       { bg = nil, fg = colors.fg_1 })
-hl(0, "SignColumn",         { bg = nil })
+hl(0, "SignColumn",         { bg = colors.bg_1 })
 hl(0, "GreenSign",          { ctermfg = 147, bg = signBg, fg = colors.green,})
 hl(0, "RedSign",            { ctermfg = 167, bg = signBg, fg = colors.red})
 hl(0, "BlueSign",           { ctermfg = 109, bg = signBg, fg = colors.blue})
