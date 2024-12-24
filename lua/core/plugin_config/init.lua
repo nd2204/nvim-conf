@@ -2,7 +2,7 @@
 require("core.plugin_config.ui")
 -------------- colorscheme -------------
 require("core.plugin_config.colorscheme")
-require("core.plugin_config.whichkey")
+require("core.plugin_config.which-key")
 require("core.plugin_config.colorizer")
 --------------- Terminal ---------------
 require("core.plugin_config.toggleterm")
