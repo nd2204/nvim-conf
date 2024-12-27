@@ -64,6 +64,7 @@ local mappings = {
     {"<leader>w", "<CMD>w<CR>", desc="Write"},
     {"<leader>W", "<CMD>w!<cr>", desc="Force Write"},
     {"<leader>L", "<CMD>Lazy<CR>", desc="Package Manager"},
+    {"<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc="Replace under cursor", silent=false},
     {"<leader>E", "<CMD>e " .. vim.fn.stdpath("config") .. "/lua/arunvi/init.lua<cr>", desc="Edit Config File"},
 }
 

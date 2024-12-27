@@ -11,36 +11,79 @@ local theme = Arunvi.option.background.colorscheme
 local ok, colorscheme = pcall(require, "core.plugin_config.colorscheme."..theme)
 if ok then
   local colors = colorscheme.getcolors()
+  if Arunvi.option.background.transparent then
+    colors.innerbg = nil
+    colors.outerbg = nil
+
+    colors.mode_normal_bg = nil
+    colors.mode_normal_fg = colors.grey_1
+
+    colors.mode_insert_bg = nil
+    colors.mode_insert_fg = colors.blue
+
+    colors.mode_visual_bg = nil
+    colors.mode_visual_fg = colors.yellow
+
+    colors.mode_command_bg = nil
+    colors.mode_command_fg = colors.aqua
+
+    colors.mode_replace_bg = nil
+    colors.mode_replace_fg = colors.red
+
+    colors.innerfg = colors.grey_1
+    colors.outerfg = colors.fg_0
+  else
+    colors.innerbg = colors.bg_4
+    colors.outerbg = colors.bg_1
+
+    colors.mode_normal_bg = colors.grey_1
+    colors.mode_normal_fg = colors.bg_0
+
+    colors.mode_insert_bg = colors.blue
+    colors.mode_insert_fg = colors.bg_0
+
+    colors.mode_visual_bg = colors.yellow
+    colors.mode_visual_fg = colors.bg_0
+
+    colors.mode_command_bg = colors.aqua
+    colors.mode_command_fg = colors.bg_0
+
+    colors.mode_replace_bg = colors.red
+    colors.mode_replace_fg = colors.bg_0
+
+    colors.innerfg = colors.grey_0
+    colors.outerfg = colors.grey_1
+  end
   opt_theme = {
     normal = {
-      a = {bg = colors.grey_1, fg = colors.bg_0, gui = 'bold'},
-      b = {bg = colors.bg_4, fg = colors.grey_1},
-      c = {bg = colors.bg_1, fg = colors.grey_0}
+      a = {bg = colors.mode_normal_bg, fg = colors.mode_normal_fg, gui = 'bold'},
+      b = {bg = colors.innerbg, fg = colors.outerfg},
+      c = {bg = colors.outerbg, fg = colors.innerfg}
     },
     insert = {
-      a = {bg = colors.blue, fg = colors.bg_0, gui = 'bold'},
-      b = {bg = colors.bg_4, fg = colors.grey_1},
-      c = {bg = colors.bg_1, fg = colors.grey_0}
+      a = {bg = colors.mode_insert_bg, fg = colors.mode_insert_fg, gui = 'bold'},
+      b = {bg = colors.innerbg, fg = colors.outerfg},
+      c = {bg = colors.outerbg, fg = colors.innerfg}
     },
     visual = {
-      a = {bg = colors.yellow, fg = colors.bg_0, gui = 'bold'},
-      b = {bg = colors.bg_4, fg = colors.grey_1},
-      c = {bg = colors.bg_1, fg = colors.grey_0}
+      a = {bg = colors.mode_visual_bg, fg = colors.mode_visual_fg, gui = 'bold'},
+      b = {bg = colors.innerbg, fg = colors.outerfg},
+      c = {bg = colors.outerbg, fg = colors.innerfg}
     },
     replace = {
-      a = {bg = colors.red, fg = colors.bg_0, gui = 'bold'},
-      b = {bg = colors.bg_5, fg = colors.grey_1},
-      c = {bg = colors.bg_1, fg = colors.grey_0}
+      a = {bg = colors.mode_replace_bg, fg = colors.mode_replace_fg, gui = 'bold'},
+      b = {bg = colors.bg_5, fg = colors.outerfg},
+      c = {bg = colors.outerbg, fg = colors.innerfg}
     },
     command = {
-      a = {bg = colors.aqua, fg = colors.bg_0, gui = 'bold'},
-      b = {bg = colors.bg_4, fg = colors.grey_1},
-      c = {bg = colors.bg_1, fg = colors.grey_0}
+      a = {bg = colors.mode_command_bg, fg = colors.mode_command_fg, gui = 'bold'},
+      b = {bg = colors.innerbg, fg = colors.outerfg},
+      c = {bg = colors.outerbg, fg = colors.innerfg}
     },
     inactive = {
-      a = {bg = colors.bg_1, fg = colors.bg_4, gui = 'none'},
-      b = {bg = colors.bg_4, fg = colors.grey_1},
-      c = {bg = colors.bg_1, fg = colors.grey_0}
+      a = {bg = colors.outerbg, fg = colors.innerbg, gui = 'none'},
+      b = {bg = colors.innerbg, fg = colors.outerfg},
+      c = {bg = colors.outerbg, fg = colors.innerfg}
     }
   }
 end
@@ -65,9 +108,9 @@ require('lualine').setup {
     always_divide_middle = true,
     globalstatus = true,
     refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
+      statusline = 100,
+      tabline = 100,
+      winbar = 100,
     }
   },
 

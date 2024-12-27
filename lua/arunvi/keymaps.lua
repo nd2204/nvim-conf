@@ -6,6 +6,7 @@ local findbuffer = "<cmd>lua require'telescope.builtin'.buffers("..themes..")<CR
 
 local keymap = vim.keymap.set
 
+keymap('n', 'J', 'mzJ`z', opts)
 keymap('n', '<Space>', '<NOP>', opts)
 keymap('n','<ESC>',':nohlsearch<CR>', opts)
 -- Navigate buffers
@@ -16,6 +17,7 @@ keymap('n','<F3>',':tabnew<CR>',opts)
 keymap('n','th',':tabnext<CR>',opts)
 keymap('n','tl',':tabprevious<CR>',opts)
 -- Navigate between quickfix items
+--
 keymap('n',']q', ':cnext<CR>zz', {desc = 'Forward Quickfix List'})
 keymap('n','[q', ':cprev<CR>zz', {desc = 'Backward Quickfix List'})
 -- Navigate between quickfix items

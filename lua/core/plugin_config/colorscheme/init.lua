@@ -194,6 +194,8 @@ if istransparent then
   hl(0, "NvimTreeWinSeparator",   { bg = nil, fg = colors.bg_4})
   hl(0, "NvimTreeVertSplit" ,     { bg = nil, fg = colors.bg_4})
 
+  hl(0, "Visual",             { bg = colors.bg_5 })
+
   vim.opt.fillchars       = 'msgsep:─,lastline:~,eob: ,vert:▕,vertright:▕,vertleft:▕,verthoriz:▕,horizup:─,horizdown:─' --▕▏
   vim.opt.listchars       = 'trail: ,space: ,eol:↵' -- ',tab:·,eol:¬,eol:↵,extends:>,precedes:<,'
 
