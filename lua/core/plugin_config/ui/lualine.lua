@@ -30,7 +30,7 @@ if ok then
     colors.mode_replace_bg = nil
     colors.mode_replace_fg = colors.red
 
-    colors.innerfg = colors.grey_1
+    colors.innerfg = colors.bg_3
     colors.outerfg = colors.fg_0
   else
     colors.innerbg = colors.bg_4

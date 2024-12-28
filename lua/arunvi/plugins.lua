@@ -32,6 +32,14 @@ local plugins = {
     'nvim-telescope/telescope.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
   },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  },
   'nvim-lualine/lualine.nvim',
   'nvim-tree/nvim-web-devicons',
   "folke/which-key.nvim",
@@ -46,7 +54,7 @@ local plugins = {
     lazy = false,
     priority = 1000,
     config = function()
-        require 'nordic' .load()
+      require 'nordic' .load()
     end
   },
   -- Syntax
@@ -79,11 +87,16 @@ local plugins = {
     enabled = is_enabled('lsp'),
   },
   -- Debugger
-  {'mfussenegger/nvim-dap', enabled = is_enabled('dap')}, -- debugging plugins
-  {'theHamsta/nvim-dap-virtual-text', enabled = is_enabled('dap')}, -- inline variable definition
-  -- {'nvim-telescope/telescope-dap.nvim', enabled = is_enabled('dap')},
-  {'rcarriga/nvim-dap-ui', enabled = is_enabled('dap')}, -- debugger UIs
-  {'jay-babu/mason-nvim-dap.nvim', event = "VeryLazy", enabled = is_enabled('dap')},
+  {
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      {'theHamsta/nvim-dap-virtual-text', enabled = is_enabled('dap')}, -- inline variable definition
+      -- {'nvim-telescope/telescope-dap.nvim', enabled = is_enabled('dap')},
+      {'rcarriga/nvim-dap-ui', enabled = is_enabled('dap')}, -- debugger UIs
+      {'jay-babu/mason-nvim-dap.nvim', event = "VeryLazy", enabled = is_enabled('dap')},
+    },
+    enabled = is_enabled('dap'),
+  },
 
   -- Markdown
   -- 'godlygeek/tabular',

@@ -8,7 +8,7 @@ require("core.language-server.debug.dap")
 require("core.language-server.debug.debug")
 
 dap.setup({
-    ensure_installed = {
-        "codelldb", "debugpy"
-    }
+    -- ensure_installed = {
+    --     "codelldb", "debugpy"
+    -- }
 })

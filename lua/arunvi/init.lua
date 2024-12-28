@@ -1,5 +1,7 @@
 Arunvi = {}
 
+local tt_ok, toggleterm = pcall(require, 'toggleterm')
+
 Arunvi.option = {
   tabwidth = 2,
   background = {
@@ -18,7 +20,7 @@ Arunvi.plugins = {
   lsp = {enable = true},
   notify = {enable = false},
   dap = {
-    enable = false,
+    enable = true,
     virtualtext = {enable = true},
     toggle_ui = function() require('dapui').toggle() end,
     close_ui = function() require('dapui').close() end,
@@ -30,17 +32,19 @@ Arunvi.plugins = {
   NvimTreeWidth = 40,
   toggleterm = {
     make = function()
-      local Terminal = require('toggleterm.terminal').Terminal
-      local _make = Terminal:new({cmd="make", direction = "float"})
-      return _make:toggle()
+      if tt_ok then
+        local Terminal = toggleterm.Terminal
+        local _make = Terminal:new({cmd="make", direction = "float"})
+        return _make:toggle()
+      end
     end,
     lazygit = function()
-      local Terminal = require('toggleterm.terminal').Terminal
+      local Terminal = toggleterm.Terminal
       local _lazygit = Terminal:new({cmd="lazygit", direction = "float"})
       return _lazygit:toggle()
     end,
     btop = function()
-      local Terminal = require('toggleterm.terminal').Terminal
+      local Terminal = toggleterm.Terminal
       local _btop = Terminal:new({cmd="btop", direction = "float"})
       return _btop:toggle()
     end,
@@ -54,7 +58,7 @@ Arunvi.plugins = {
 
 Arunvi.helper = {
   refresh = function()
-    vim.cmd('so ' .. vim.fn.getenv("MYVIMRC"))
+    dofile(vim.env.MYVIMRC)
   end,
   tmuxIsRunning = function()
     local result = os.getenv("TMUX")
@@ -65,6 +69,24 @@ Arunvi.helper = {
     return not (nil == result or "" == result)
   end
 }
+
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   pattern = "*.lua",
+--   callback = function()
+--     local file = vim.fn.expand("<afile>")
+--     vim.notify(file)
+--     if file:match(vim.env.MYVIMRC) or file:match(vim.fn.stdpath("config")[1]) then
+--       for name, _ in pairs(package.loaded) do
+--         if name:match("^") then
+--           package.loaded[name] = nil
+
+--         end
+--       end
+--       dofile(vim.env.MYVIMRC)
+--       print("Configuration reloaded!")
+--     end
+--   end,
+-- })
 
 require("arunvi.options")
 require("arunvi.plugins")

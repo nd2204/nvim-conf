@@ -78,7 +78,7 @@ hl(0, "NonText",            { fg = colors.bg_1 })
 hl(0, "StatusLine",         { link = "NvimTreeNormal" })
 hl(0, "StatusLineNC",       { link = "NormalNC" })
 hl(0, "WhiteSpace",         { fg = colors.bg_2 })
-hl(0, "Comment",            { bg=nil, fg=colors.aqua})
+hl(0, "Comment",            { bg=nil, fg=colors.grey_1})
 hl(0, "Search",             { bg=nil, bold=true, underline=true})
 hl(0, "IncSearch",          { fg=colors.bg_0, bg=colors.green, bold=true})
 hl(0, "VirtualTextHint",    { fg=colors.blue, bg="#2e3b3b"})
@@ -162,7 +162,6 @@ hl(0, 'GitSignsChangeNr', { link = 'GitSignsChangeNr' })
 hl(0, 'GitSignsChangedeleteNr', { link = 'GitSignsChangeNr' })
 hl(0, 'GitSignsDeleteNr', { link = 'GitSignsDeleteNr' })
 hl(0, 'GitSignsTopdeleteNr', { link = 'GitSignsDeleteNr' })
-
 
 local istransparent = Arunvi.option.background.transparent
 if istransparent then

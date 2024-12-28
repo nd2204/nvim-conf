@@ -26,8 +26,6 @@ keymap('n','[l', ':lprev<CR>zz', {desc = 'Backward Quickfix List'})
 -- Navigate tabs
 keymap('n','<Tab>','<cmd>tabnext<CR>',opts)
 keymap('n','<S-Tab>','<cmd>tabprevious<CR>',opts)
--- Escape from insert mode
-keymap('i', 'jk', '<ESC>', {noremap = true})
 -- Resize pane with arrow keymap
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
