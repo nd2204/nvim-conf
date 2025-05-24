@@ -23,10 +23,12 @@ local plugins = {
   'tpope/vim-commentary',
   'lewis6991/gitsigns.nvim',
   'windwp/nvim-autopairs',
+  'windwp/nvim-ts-autotag',
   'nvim-tree/nvim-tree.lua',
   'lewis6991/impatient.nvim',
   'akinsho/toggleterm.nvim',
   'Wansmer/treesj',
+  'github/copilot.vim',
   -- UIs
   {
     'nvim-telescope/telescope.nvim',
@@ -59,7 +61,6 @@ local plugins = {
   },
   -- Syntax
   'nvim-treesitter/nvim-treesitter',
-  'windwp/nvim-ts-autotag',
   {'RRethy/nvim-treesitter-endwise', enabled = is_enabled('treesitter')},
   {'RRethy/nvim-treesitter-textsubjects', enabled = is_enabled('treesitter')},
   {'p00f/nvim-ts-rainbow'},
@@ -72,15 +73,15 @@ local plugins = {
   {'hrsh7th/cmp-cmdline', enabled = is_enabled('lsp')},
   {'saadparwaiz1/cmp_luasnip', enabled = is_enabled('lsp')},
   {"L3MON4D3/LuaSnip", enabled = is_enabled('lsp')},  -- snippet engine
-  {"rafamadriz/friendly-snippets", enabled = is_enabled('lsp')}, -- a bunch of snippets to use
   {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+  {"rafamadriz/friendly-snippets", enabled = is_enabled('lsp')}, -- a bunch of snippets to use
   {"folke/neodev.nvim", opts = {} },
   {"williamboman/mason.nvim", enabled = is_enabled('lsp')},
   {"williamboman/mason-lspconfig.nvim", enabled = is_enabled('lsp')},
   {"neovim/nvim-lspconfig", enabled = is_enabled('lsp')},
   {"onsails/lspkind.nvim", enabled = is_enabled('lsp')}, -- Vscode like picktogram for completion
   -- {"glepnir/lspsaga.nvim", event = "BufRead"}, -- LSP UIs
-  {"jose-elias-alvarez/null-ls.nvim", enabled = is_enabled('lsp')},
+  {"nvimtools/none-ls.nvim", enabled = is_enabled('lsp')},
   {
     'jay-babu/mason-null-ls.nvim',
     event = { "BufReadPre", "BufNewFile" },

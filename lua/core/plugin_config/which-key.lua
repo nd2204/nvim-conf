@@ -6,38 +6,35 @@ vim.o.timeoutlen = 500
 wk.setup()
 
 local mappings = {
-    {"<leader>j",  "<CMD>lua require('treesj').toggle()<CR>", desc="Toggle breakline" },
+  {"<leader>j",  "<CMD>lua require('treesj').toggle()<CR>", desc="Toggle breakline" },
+  {
+    group = "LSP",
+    {"<leader>li", "<CMD>LspInfo<CR>", desc="Connected Language Servers"},
+    {"<leader>lk", '<cmd>lua vim.lsp.buf.signature_help()<CR>', desc="Signature help"},
+    {"<leader>lK", desc="Hover doc (use K instead)"},
+    {"<leader>lw", function() vim.lsp.buf.add_workspace_folder() end, desc="Add workspace folder"},
+    {"<leader>lW", function() vim.lsp.buf.remove_workspace_folder() end, desc="Remove workspace folder"},
+    {"<leader>ll", function() vim.notify(vim.inspect(vim.lsp.buf.list_workspace_folders()), "info") end, desc="List workspace folder" },
     {
-        group = "LSP",
-       {"<leader>li", ":LspInfo<cr>", desc="Connected Language Servers"},
-        {"<leader>lk", '<cmd>lua vim.lsp.buf.signature_help()<CR>', desc="Signature help"},
-        {"<leader>lK", desc="Hover doc (use K instead)"},
-        {"<leader>lw", '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', desc="Add workspace folder"},
-        {"<leader>lW", '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', desc="Remove workspace folder"},
-        {"<leader>ll", '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', desc="List workspace folder" },
-        {
-            group = "Go to ... definition",
-            {"<leader>lgd", '<cmd>lua vim.lsp.buf.definition()<CR>', desc="Go to definition"},
-            {"<leader>lgt", desc="Peek type definition"},
-        },
-        {"<leader>lt", desc="Peek type definition"},
-        {"<leader>ld", desc="Peek definition"},
-        {"<leader>lD", '<cmd>lua vim.lsp.buf.delaration()<CR>', desc="Go to declaration"},
-        {"<leader>lr", '<cmd>lua vim.lsp.buf.references()<CR>', desc="References"},
-        {"<leader>lR", desc="Rename"},
-        {"<leader>la", desc="Code actions"},
-        {"<leader>le", '<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>', desc="Show line diagnostics"},
-        {"<leader>lj", desc="Next diagnostic"},
-        {"<leader>lJ", desc="Previous diagnostic"},
-        {"<leader>lI", '<cmd>Mason<cr>', desc='Install language server'},
-        {"<leader>lF", desc="Format File"},
-        {
-            name = "Call hierachy",
-            {"<leader>lci", desc="inbound"},
-            {"<leader>lco", desc="out"}
-        },
+      group = "Go to ... definition",
+      {"<leader>lgt", desc="Peek type definition"},
     },
+    {"<leader>lt", desc="Peek type definition"},
+    {"<leader>ld", desc="Peek definition"},
+    {"<leader>lD", function() vim.lsp.buf.delaration() end, desc="Go to declaration"},
+    {"<leader>lr", function() vim.lsp.buf.references() end, desc="References"},
+    {"<leader>lR", function() vim.lsp.buf.rename(vim.fn.input("Rename to")) end, desc="Rename"},
+    {"<leader>la", function() vim.lsp.buf.code_action() end, desc="Code actions"},
+    {"<leader>le", function() vim.diagnostic.show_line_diagnostics() end, desc="Show line diagnostics"},
+    {"<leader>lf", function() vim.lsp.buf.format() { async = true } end,desc="Format File"},
+    {"<leader>lI", '<cmd>Mason<cr>', desc='Install language server'},
     {
+      name = "Call hierachy",
+      {"<leader>lci", desc="inbound"},
+      {"<leader>lco", desc="out"}
+    },
+  },
+  {
     name = "Search/Telescope",
     { "<leader>fd",
       function()

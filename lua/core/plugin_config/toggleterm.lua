@@ -6,7 +6,7 @@ end
 toggleterm.setup({
   size = function(term)
         if term.direction == "horizontal" then
-            return 10
+            return 12
         elseif term.direction == "vertical" then
             return vim.o.columns * 0.4
         end
@@ -21,37 +21,37 @@ toggleterm.setup({
   persist_size = true,
   close_on_exit = true,
   shell = vim.o.shell,
-    auto_scroll = true,
-    highlights = {
-        Normal = {
-            link = 'NvimTreeNormal'
-        },
-        NormalFloat = {
-            link = 'Normal'
-        },
-        FloatBorder = {
-            link = 'Grey'
-        }
+  auto_scroll = true,
+  highlights = {
+    Normal = {
+      link = 'NvimTreeNormal'
     },
-    float_opts = {
-        border = "single",
-        winblend = 0,
+    NormalFloat = {
+      link = 'Normal'
     },
-    winbar = {
-        enabled = false,
-        name_formatter = function(term) --  term: Terminal
-            return term.name
-        end
-    },
+    FloatBorder = {
+      link = 'Grey'
+    }
+  },
+  float_opts = {
+    border = "single",
+    winblend = 0,
+  },
+  winbar = {
+    enabled = false,
+    name_formatter = function(term) --  term: Terminal
+      return term.name
+    end
+  },
 })
 
 function _G.set_terminal_keymaps()
-    local opts = {noremap = true}
-    vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
-    vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+  local opts = {noremap = true}
+  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
 end
 
 

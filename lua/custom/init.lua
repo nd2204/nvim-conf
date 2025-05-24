@@ -21,12 +21,12 @@ end
 
 local aucmds = {
   cpp = {
-    compile = "!g++ -std=c++17 -O2 -Wall -o main %",
+    compile = "!c++ -std=c++17 -O2 -Wall -o main %",
     run = "%s split | term ./main %s",
     clean = "!rm main"
   },
   c = {
-    compile = "!gcc -O2 -Wall -o main %",
+    compile = "!cc -O2 -Wall -o main %",
     run = "%d split | term ./main %s",
     clean = "!rm main"
   },
@@ -41,9 +41,15 @@ for ext, ins in pairs(aucmds)  do
     pattern = {"*." .. ext},
     callback = function()
       vim.keymap.set({"n"}, "<leader>c", function()
-        vim.cmd(ins.compile);
-        vim.cmd(string.format(ins.run, get_height(), get_args()));
-        vim.cmd(ins.clean);
+        if ins.compile ~= nil then
+          vim.cmd(ins.compile);
+        end
+        if ins.run ~= nil then
+          vim.cmd(string.format(ins.run, get_height(), get_args()));
+        end
+        if ins.clean ~= nil then
+          vim.cmd(ins.clean);
+        end
       end, buffopts)
     end
   })

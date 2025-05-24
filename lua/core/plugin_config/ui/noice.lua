@@ -3,7 +3,6 @@ local ok, noice = pcall(require, 'noice')
 if not ok then
   return
 end
-
 noice.setup({
   cmdline = {
     enabled = true, -- enables the Noice cmdline UI
@@ -30,10 +29,10 @@ noice.setup({
     -- NOTE: If you enable messages, then the cmdline is enabled automatically.
     -- This is a current Neovim limitation.
     enabled = true, -- enables the Noice messages UI
-    view = "notify", -- default view for messages
-    view_error = "notify", -- view for errors
+    view = "mini", -- default view for messages
+    view_error = "mini", -- view for errors
     view_warn = "notify", -- view for warnings
-    view_history = "messages", -- view for :messages
+    view_history = "mini", -- view for :messages
     view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
   },
   popupmenu = {
@@ -105,7 +104,7 @@ noice.setup({
     -- The default routes will forward notifications to nvim-notify
     -- Benefit of using Noice for this is the routing and consistent history view
     enabled = true,
-    view = "notify",
+    view = "mini",
   },
   lsp = {
     progress = {
@@ -113,7 +112,7 @@ noice.setup({
       -- Lsp Progress is formatted using the builtins for lsp_progress. See config.format.builtin
       -- See the section on formatting for more details on how to customize.
       --- @type NoiceFormat|string
-      format = "lsp_progress",
+      format = {"{progress}", "{spinner}", "{title}"},
       --- @type NoiceFormat|string
       format_done = "lsp_progress_done",
       throttle = 1000 / 30, -- frequency to update lsp progress message
@@ -149,7 +148,7 @@ noice.setup({
     message = {
       -- Messages shown by lsp servers
       enabled = true,
-      view = "notify",
+      view = "mini",
       opts = {},
     },
     -- defaults for hover and signature help
@@ -186,7 +185,7 @@ noice.setup({
   presets = {
     -- you can enable a preset by setting it to true, or a table that will override the preset config
     -- you can also add custom presets that you can enable/disable with enabled=true
-    bottom_search = false, -- use a classic bottom cmdline for search
+    bottom_search = true, -- use a classic bottom cmdline for search
     command_palette = true, -- position the cmdline and popupmenu together
     long_message_to_split = false, -- long messages will be sent to a split
     inc_rename = false, -- enables an input dialog for inc-rename.nvim

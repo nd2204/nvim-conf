@@ -1,7 +1,6 @@
 local colorscheme = "gruvbox-material"
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not status_ok then
-  vim.notify("colorscheme " .. colorscheme .. " not found!")
+if not status_ok then vim.notify("colorscheme " .. colorscheme .. " not found!")
   return
 end
 
@@ -37,7 +36,7 @@ local theme = {
   bg_2    = { ["dark"] = "#3a3735", ["light"] = "#e6d5ae" },
   bg_3    = { ["dark"] = "#3c3836", ["light"] = "#dac9a5" },
   bg_4    = { ["dark"] = "#45403d", ["light"] = "#d5c4a1" },
-  bg_5    = { ["dark"] = "#5a524c", ["light"] = "#d5c4a1" },
+  bg_5    = { ["dark"] = "#484848", ["light"] = "#d5c4a1" },
   grey_0  = { ["dark"] = "#7c6f64", ["light"] = "#a89984" },
   grey_1  = { ["dark"] = "#928374", ["light"] = "#928374" },
   grey_2  = { ["dark"] = "#a89984", ["light"] = "#7c6f64" },

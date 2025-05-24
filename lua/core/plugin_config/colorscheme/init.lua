@@ -189,9 +189,12 @@ if istransparent then
   hl(0, "AquaSign",           { ctermfg = 108, bg = nil, fg = colors.aqua})
 
   hl(0, "NvimTreeNormal",         { bg = nil, fg = colors.fg_0 })
+  hl(0, "NvimTreeOpenedHL",       { bg = nil, fg = colors.aqua })
   hl(0, "NvimTreeEndOfBuffer",    { fg = nil })
   hl(0, "NvimTreeWinSeparator",   { bg = nil, fg = colors.bg_4})
   hl(0, "NvimTreeVertSplit" ,     { bg = nil, fg = colors.bg_4})
+  hl(0, "NvimTreeCursorLine" ,    { bg = colors.bg_1 } )
+  hl(0, "NvimTreeCursorLineNr" ,  { bg = colors.bg_1 } )
 
   hl(0, "Visual",             { bg = colors.bg_5 })
 

@@ -26,7 +26,10 @@ opt.mouse           = "a"           -- allow the mouse to be used in neovim
 opt.scrolloff       = 10             -- spare n line between your cursor and the bottom of the screen when scroll down
 opt.sidescrolloff   = 0
 -- opt.clipboard       = "unnamedplus"
-vim.cmd("set guicursor=\"n-v-c-sm-i-ci-ve:block,r-cr-e:hor20\"")
+opt.swapfile        = false
+opt.backup          = false
+opt.writebackup     = false
+-- vim.cmd("set guicursor=\"n-v-c-sm-i-ci-ve:block,r-cr-e:hor20\"")
 
 wo.wrap             = false          -- wrap line
 opt.textwidth       = 80
@@ -41,8 +44,7 @@ wo.signcolumn       = 'yes'
 opt.autowrite       = true
 opt.autoread        = true
 
--- TABS
-opt.tabstop         = Arunvi.option.tabwidth
+-- TABS opt.tabstop         = Arunvi.option.tabwidth
 opt.shiftwidth      = Arunvi.option.tabwidth
 opt.autoindent      = true
 opt.expandtab       = true
@@ -56,13 +58,13 @@ opt.linebreak       = false         -- wrap whole word when wrap is enable
 opt.termguicolors   = true
 opt.fillchars       = 'msgsep:─,lastline: ,eob: ,vert:▕,vertright:▕,vertleft:▕,verthoriz:▕,horizup:─,horizdown:─' --▕▏
 opt.list            = true
-opt.listchars       = 'trail:~,space: ,eol:↵,tab:  ' -- ',tab:·,eol:¬,eol:↵,extends:>,precedes:<,'
+opt.listchars       = 'trail:~,space: ,eol:↵,tab: ' -- ',tab:·,eol:¬,eol:↵,extends:>,precedes:<,'
 -- opt.guifont         = "JetBrainsMono NFM"
 
 -- folding
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevelstart = 999
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- opt.foldlevelstart = 999
 
 -- Disable various builtin plugins in Vim
 g.loaded_matchparen = 0

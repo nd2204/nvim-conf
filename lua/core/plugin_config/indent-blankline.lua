@@ -4,7 +4,7 @@ if not ok then
 end
 
 ibl.setup {
-  enabled = false,
+  enabled = true,
 
   exclude = {
     buftypes = { "terminal", "nofile"},
@@ -32,7 +32,7 @@ ibl.setup {
   },
 
   scope = {
-    enabled = false,
+    enabled = true,
     show_start = false,
     show_end = false,
     highlight = "String",

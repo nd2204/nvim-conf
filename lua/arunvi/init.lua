@@ -1,7 +1,5 @@
 Arunvi = {}
 
-local tt_ok, toggleterm = pcall(require, 'toggleterm')
-
 Arunvi.option = {
   tabwidth = 2,
   background = {
@@ -32,6 +30,7 @@ Arunvi.plugins = {
   NvimTreeWidth = 40,
   toggleterm = {
     make = function()
+      local tt_ok, toggleterm = pcall(require, 'toggleterm')
       if tt_ok then
         local Terminal = toggleterm.Terminal
         local _make = Terminal:new({cmd="make", direction = "float"})
@@ -39,19 +38,28 @@ Arunvi.plugins = {
       end
     end,
     lazygit = function()
-      local Terminal = toggleterm.Terminal
-      local _lazygit = Terminal:new({cmd="lazygit", direction = "float"})
-      return _lazygit:toggle()
+      local tt_ok, toggleterm = pcall(require, 'toggleterm')
+      if tt_ok then
+        local Terminal = toggleterm.Terminal
+        local _lazygit = Terminal:new({cmd="lazygit", direction = "float"})
+        return _lazygit:toggle()
+      end
     end,
     btop = function()
-      local Terminal = toggleterm.Terminal
-      local _btop = Terminal:new({cmd="btop", direction = "float"})
-      return _btop:toggle()
+      local tt_ok, toggleterm = pcall(require, 'toggleterm')
+      if tt_ok then
+        local Terminal = toggleterm.Terminal
+        local _btop = Terminal:new({cmd="btop", direction = "float"})
+        return _btop:toggle()
+      end
     end,
     bs = function()
-      local Terminal = require('toggleterm.terminal').Terminal
-      local _bs = Terminal:new({cmd="browser-sync start -s -f -w", direction = "horizontal"})
-      return _bs:toggle()
+      local tt_ok, toggleterm = pcall(require, 'toggleterm')
+      if tt_ok then
+        local Terminal = toggleterm.Terminal
+        local _bs = Terminal:new({cmd="browser-sync start -s -f -w", direction = "horizontal"})
+        return _bs:toggle()
+      end
     end,
   },
 }
