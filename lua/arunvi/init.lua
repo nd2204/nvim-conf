@@ -88,6 +88,17 @@ Arunvi.helper = {
 --   end,
 -- })
 
+if vim.g.neovide then
+  vim.o.guifont = "RobotoMono Nerd Font Mono:h9.5:b"
+  vim.opt.linespace = 5
+  -- vim.g.neovide_title_background_color = string.format(
+  --   "%x",
+  --   vim.api.nvim_get_hl(0, {id=vim.api.nvim_get_hl_id_by_name("Normal")}).bg
+  -- )
+  vim.g.neovide_title_background_color = "0x000000"
+  vim.g.neovide_title_text_color = "0xebdbb2"
+end
+
 require("arunvi.options")
 require("arunvi.plugins")
 require("arunvi.keymaps")
