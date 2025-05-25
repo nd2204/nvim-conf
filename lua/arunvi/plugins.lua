@@ -13,7 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local function is_enabled(plugin)
-  return Arunvi.plugins[plugin].enable
+  return Arunvi.Plugins[plugin].enable
 end
 
 -- Table of plugins

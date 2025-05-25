@@ -25,7 +25,7 @@ opt.ignorecase      = true
 opt.mouse           = "a"           -- allow the mouse to be used in neovim
 opt.scrolloff       = 10             -- spare n line between your cursor and the bottom of the screen when scroll down
 opt.sidescrolloff   = 0
--- opt.clipboard       = "unnamedplus"
+opt.clipboard       = "unnamedplus"
 opt.swapfile        = false
 opt.backup          = false
 opt.writebackup     = false
@@ -59,7 +59,6 @@ opt.termguicolors   = true
 opt.fillchars       = 'msgsep:─,lastline: ,eob: ,vert:▕,vertright:▕,vertleft:▕,verthoriz:▕,horizup:─,horizdown:─' --▕▏
 opt.list            = true
 opt.listchars       = 'trail:~,space: ,eol:↵,tab: ' -- ',tab:·,eol:¬,eol:↵,extends:>,precedes:<,'
--- opt.guifont         = "JetBrainsMono NFM"
 
 -- folding
 -- opt.foldmethod = "expr"
