@@ -11,7 +11,7 @@ G.UI = {
   Theme = {
     Active = "gruvbox",
     Mode = "dark",
-    Transparent = true,
+    Transparent = false,
     Dim = false,
     Underline = true,
     Bold = false,
@@ -55,6 +55,15 @@ G.PluginConfig = {
 }
 
 G.Helper = {
+  IsWin           = function()
+    return vim.fn.has("win32") == 1
+  end,
+  IsMac           = function()
+    return vim.fn.has("mac") == 1
+  end,
+  IsUnix          = function()
+    return vim.fn.has("unix") == 1
+  end,
   Dependencies    = {
     HasGoCli = function()
       return vim.fn.executable("go") == 1

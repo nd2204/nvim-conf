@@ -114,11 +114,11 @@ return G.Plugins.Theme.gruvbox and {
         CursorLineNr = { link = "GruvboxFg0" },
         CursorLine = { bg = "none" },
         StatusLineNC = { bg = G.UI.Theme.Transparent and "none" or mode.bg_dim },
-        StatusLine = { bg = G.UI.Theme.Transparent and "none" or mode.bg1 },
+        StatusLine = { bg = G.UI.Theme.Transparent and "none" or mode.bg0 },
         ColorColumn = { link = "StatusLine" },
         SignColumn = { bg = "none" },
-        TabLineFill = { bg = G.UI.Theme.Transparent and "none" or mode.bg1 },
-        TabLineSel = { bg = G.UI.Theme.Transparent and "none" or mode.bg1 },
+        TabLineFill = { bg = G.UI.Theme.Transparent and "none" or mode.bg0 },
+        TabLineSel = { bg = G.UI.Theme.Transparent and "none" or mode.bg0 },
 
         -- Telescope
         TelescopeNormal = { link = "GruvboxFg1" },
@@ -146,7 +146,7 @@ return G.Plugins.Theme.gruvbox and {
         CmpItemAbbr = { link = "CmpItemKind" },
 
         -- noice
-        NoiceCmdlinePopupBorder = { link = "GruvboxFg1" },
+        NoiceCmdlinePopupBorder = { link = "GruvboxGray" },
 
       },
     })

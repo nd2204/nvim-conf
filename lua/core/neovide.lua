@@ -3,8 +3,12 @@ local colors = require("core.colors").GetPallete(G.UI.Theme.Mode)
 local opacity = G.UI.Theme.Transparent and 0.75 or 1.0
 local opacity_hex = string.format("%x", opacity * 255)
 
-vim.o.guifont = "RobotoMono Nerd Font Mono:h9.5:b"
-vim.opt.linespace = 4
+if G.Helper.IsMac() then
+  vim.o.guifont = "RobotoMono Nerd Font Mono:h14.5:b"
+else
+  vim.o.guifont = "RobotoMono Nerd Font Mono:h9.5:b"
+end
+vim.opt.linespace = 6
 
 vim.g.neovide_title_background_color = G.UI.Theme.Transparent and "none" or colors.bg1
 vim.g.neovide_title_text_color = colors.fg0

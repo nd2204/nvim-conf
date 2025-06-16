@@ -163,13 +163,13 @@ return {
             'diagnostics',
             symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
           },
+        },
+        lualine_x = {
           {
             'searchcount',
             maxcount = 999,
             timeout = 500,
           },
-        },
-        lualine_x = {
           { 'encoding' },
           { 'fileformat' },
         },
