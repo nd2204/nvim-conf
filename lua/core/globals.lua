@@ -4,6 +4,7 @@ G.Core = {
   Leader = " ",      -- Leader key
   LocalLeader = " ", -- Local leader key
   AutoSave = true,   -- Auto save files
+  Indent = 2,        -- Indent width
 }
 
 G.UI = {
@@ -11,32 +12,73 @@ G.UI = {
     Active = "gruvbox",
     Mode = "dark",
     Transparent = true,
-    Dim = false
+    Dim = false,
+    Underline = true,
+    Bold = false,
   },
   FileExplorer = { Width = 40 },
-  TabWidth = 2,
-  CmdHeight = 1,
+  TabWidth = 4,
+  CmdHeight = 0,
+  TabLine = false,
   SignColumn = true,
   RelativeNumbers = true, -- Use relative line numbers
+  IndentLine = true,
+  ColorColumn = true,
 }
 
 G.Plugins = {
   lsp        = true,
   notify     = true,
   project    = true,
+  yazi       = false,
+  neotree    = false,
+  snacks     = true,
+  minifile   = true,
+  neovide    = false,
+  noice      = true,
   treesitter = true,
+  splitjoin  = true,
+  session    = true,
+  dashboard  = true,
   dap        = true,
   whichkey   = true,
+  gitsign    = true,
   Theme      = {
     gruvbox = true
-  }
+  },
 }
 
 G.PluginConfig = {
-
+  treesitter = {
+    parsers = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "cpp" },
+  },
 }
 
 G.Helper = {
+  Dependencies    = {
+    HasGoCli = function()
+      return vim.fn.executable("go") == 1
+    end,
+    HasFileExplorerPlugin = function()
+      return G.Plugins.minifile or G.Plugins.neotree or G.Plugins.yazi
+    end,
+    HasYaziExec = function()
+      return vim.fn.executable("yazi") == 1
+    end,
+    HasRipgrepExec = function()
+      return vim.fn.executable("rg") == 1
+    end,
+    HasLazyGit = function()
+      return vim.fn.executable("lazygit") == 1
+    end,
+    HasCCPPCompiler = function()
+      return vim.fn.executable("cc") == 1
+          or vim.fn.executable("gcc") == 1
+          or vim.fn.executable("clang") == 1
+          or vim.fn.executable("cl") == 1
+          or vim.fn.executable("zig") == 1
+    end
+  },
   Refresh         = function()
     dofile(vim.env.MYVIMRC)
   end,
@@ -80,3 +122,6 @@ G.Helper = {
   toggle_ui       = function() require('dapui').toggle() end,
   close_ui        = function() require('dapui').close() end,
 }
+
+-- Suppress deprecate messages
+vim.deprecate = function() end

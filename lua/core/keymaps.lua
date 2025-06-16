@@ -4,16 +4,25 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 -- local term_opts = { silent = true }
 
+local fn_copy_cur_buf_filepath = function()
+  local filepath = vim.fn.expand("%:~")
+  vim.fn.setreg("+", filepath)
+  vim.notify("Copied filepath: " .. filepath)
+end
+
+local fn_open_global_config_file = function()
+  vim.api.nvim_cmd(
+    vim.api.nvim_parse_cmd("e " .. vim.fn.stdpath("config") .. "/lua/core/globals.lua", {}),
+    {}
+  )
+end
+
 keymap('n', 'J', 'mzJ`z', opts)
 keymap('n', '<Space>', '<NOP>', opts)
 keymap('n', '<ESC>', ':nohlsearch<CR>', opts)
 -- Navigate buffers
 keymap('n', '<S-h>', ':bprevious<CR>', opts)
 keymap('n', '<S-l>', ':bnext<CR>', opts)
--- Navigate tabs
-keymap('n', '<F3>', ':tabnew<CR>', opts)
-keymap('n', 'th', ':tabnext<CR>', opts)
-keymap('n', 'tl', ':tabprevious<CR>', opts)
 -- Navigate between quickfix items
 keymap('n', ']q', ':cnext<CR>zz', { desc = 'Forward Quickfix List' })
 keymap('n', '[q', ':cprev<CR>zz', { desc = 'Backward Quickfix List' })
@@ -46,19 +55,22 @@ keymap('n', '<C-l>', '<C-w>l', { noremap = true, silent = false })
 -- Move text up and down
 keymap("x", "J", ":move \'>+1<CR>gv=gv", opts)
 keymap("x", "K", ":move \'<-2<CR>gv=gv", opts)
+-- Navigate tabs
+keymap('n', '<leader>to', ':tabnew<CR>', { desc = "Open new tab" })
+keymap('n', '<leader>tx', ':tabclose<CR>', { desc = "Close current tab" })
+keymap('n', '<leader>tn', ':tabnext<CR>', { desc = "Go to next tab" })
+keymap('n', '<leader>tp', ':tabprevious<CR>', { desc = "Go to previous tab" })
 
-if vim.g.loaded_netrw ~= 1 then
+keymap('n', "Q", "<nop>")
+keymap('n', "q:", "<nop>")
+keymap('n', "<leader>x", "<CMD>bdelete!<CR>", { desc = "Close Buffer Force" })
+keymap('n', "<leader>q", "<CMD>qa!<CR>", { desc = "Force exit nvim" })
+keymap('n', "<leader>w", "<CMD>w!<cr>", { desc = "Force write buffer" })
+keymap('n', "<leader>L", "<CMD>Lazy<CR>", { desc = "Package Manager" })
+keymap('n', "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "Replace all under cursor", silent = false })
+keymap("n", "<leader>G", fn_open_global_config_file, { desc = "Edit Global File" })
+keymap("n", "<leader>fp", fn_copy_cur_buf_filepath, { desc = "Copy file path to clipboard" })
+if not G.Helper.Dependencies.HasFileExplorerPlugin() then
   keymap("n", "<leader>e", vim.cmd.Ex, { desc = "Open File Explorer" })
-else
-  vim.notify("");
-  -- keymap("n", "<leader>e", vim.cmd.Ex, { desc = "Open File Explorer" })
 end
-
-keymap("n", "<leader>G", "<CMD>e " .. vim.fn.stdpath("config") .. "/lua/core/globals.lua<cr>",
-  { desc = "Edit Global File" })
-
-local builtin = require('telescope.builtin')
-keymap('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-keymap('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-keymap('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-keymap('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
