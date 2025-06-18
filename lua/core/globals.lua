@@ -27,23 +27,24 @@ G.UI = {
 }
 
 G.Plugins = {
-  lsp        = true,
-  notify     = true,
-  project    = true,
-  yazi       = false,
-  neotree    = false,
-  snacks     = true,
-  minifile   = true,
-  neovide    = false,
-  noice      = true,
-  treesitter = true,
-  splitjoin  = true,
-  session    = true,
-  dashboard  = true,
-  dap        = true,
-  whichkey   = true,
-  gitsign    = true,
-  Theme      = {
+  lsp         = true,
+  notify      = true,
+  project     = true,
+  yazi        = false,
+  neotree     = false,
+  snacks      = true,
+  minifile    = true,
+  neovide     = false,
+  toggle_term = true,
+  noice       = true,
+  treesitter  = true,
+  splitjoin   = true,
+  session     = true,
+  dashboard   = true,
+  dap         = true,
+  whichkey    = true,
+  gitsign     = true,
+  Theme       = {
     gruvbox = true
   },
 }

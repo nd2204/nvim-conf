@@ -9,6 +9,17 @@ g.maplocalleader = G.Core.LocalLeader
 g.guicursor = ""
 g.editorconfig = true
 
+if G.Helper.IsWin() then
+  vim.opt.shell = vim.fn.executable "pwsh" and "pwsh" or "powershell"
+  vim.opt.shellcmdflag =
+  "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
+end
+
+
 -- fall back to netrw when no file explorer plugins enabled
 g.loaded_netrw = G.Helper.Dependencies.HasFileExplorerPlugin() and 1 or 0
 g.loaded_netrwPlugin = G.Helper.Dependencies.HasFileExplorerPlugin() and 1 or 0
@@ -44,7 +55,7 @@ opt.pumheight = 0 -- Maximum number of items to show in the popup menu. (0: "use
 opt.tabstop = 8 -- Number of spaces that a <Tab> in the file counts for.
 opt.softtabstop = G.Core.Indent -- Controls how many spaces are inserted or deleted when pressing <Tab> or <Backspace>
 opt.shiftwidth = G.Core
-.Indent -- Number of spaces to use for each step of (auto)indent.  Used for |'cindent'|, |>>|, |<<|, etc.
+    .Indent -- Number of spaces to use for each step of (auto)indent.  Used for |'cindent'|, |>>|, |<<|, etc.
 opt.autoindent = true -- Set auto indent when starting a new line
 opt.expandtab = true -- Turn tabs into spaces (should be avoided when using wide tabstop)
 opt.autowrite = true -- Write the contents of the file, if it has been modified, on each `:next`, `:rewind`, etc

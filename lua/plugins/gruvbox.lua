@@ -65,6 +65,7 @@ return G.Plugins.Theme.gruvbox and {
         Macro = { link = "GruvboxPurple" },
         Delimiter = { link = "GruvboxGray" },
         LuaTable = { link = "GruvboxGray" },
+        DiagnosticUnneccessary = { link = "GruvboxGray" },
 
         -- UI
         GruvboxRedUnderline = {
@@ -123,14 +124,18 @@ return G.Plugins.Theme.gruvbox and {
         -- Telescope
         TelescopeNormal = { link = "GruvboxFg1" },
         TelescopeSelection = { bg = mode.bg1 },
-        TelescopeSelectionCaret = { link = "GruvboxRed" },
-        TelescopeMultiSelection = { link = "GruvboxBlue" },
+        TelescopeSelectionCaret = { bg = mode.bg1, fg = mode.blue },
+        TelescopeMultiSelection = { fg = mode.blue },
         TelescopeBorder = { link = "FloatBorder" },
+        TelescopeTitle = { fg = mode.fg0 },
+        TelescopePromptTitle = { fg = mode.fg0 },
+        TelescopeResultsTitle = { fg = mode.fg0 },
+        TelescopePreivewTitle = { fg = mode.fg0 },
         TelescopePromptBorder = { link = "TelescopeBorder" },
         TelescopeResultsBorder = { link = "TelescopeBorder" },
         TelescopePreviewBorder = { link = "TelescopeBorder" },
         TelescopeMatching = { link = "GruvboxOrange" },
-        TelescopePromptPrefix = { link = "GruvboxRed" },
+        TelescopePromptPrefix = { link = "GruvboxGreen" },
         TelescopePrompt = { link = "TelescopeNormal" },
 
         -- Snacks

@@ -10,33 +10,64 @@ return {
       input = { enabled = false },
       picker = { enabled = false },
       notifier = { enabled = false },
-      quickfile = { enabled = true },
       statuscolumn = { enabled = false },
       words = { enabled = false },
       rename = { enabled = false },
-      zen = { enabled = false }
-    },
-    init = function()
-      local snacks = require("snacks")
-      snacks.dashboard.setup({
-        dashboard = {
-          enabled = G.Plugins.dashboard,
-          sections = {
-            { section = "header" },
-            { section = "keys" },
-            { title = "Sessions" },
-            { section = "startup" },
-            { icon = " ", title = "Projects", section = "projects" },
-          }
+      zen = { enabled = false },
+      terminal = {
+        bo = {
+          filetype = "snacks_terminal",
+        },
+        wo = {},
+        keys = {
+          q = "hide",
+          gf = function(self)
+            local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
+            if f == "" then
+              Snacks.notify.warn("No file under cursor")
+            else
+              self:hide()
+              vim.schedule(function()
+                vim.cmd("e " .. f)
+              end)
+            end
+          end,
+          term_normal = {
+            "<esc>",
+            function(self)
+              vim.cmd("stopinsert")
+            end,
+            mode = "t",
+            expr = true,
+            desc = "Double escape to normal mode",
+          },
+        },
+      },
+      quickfile = { enabled = true },
+      dashboard = {
+        enabled = G.Plugins.dashboard,
+        sections = {
+          { section = "header" },
+          { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+          { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+          { section = "startup" },
         }
-      })
-      -- vim.notify = snacks.notifier.notify
-    end,
+      }
+    },
     keys = {
       G.Helper.Dependencies.HasLazyGit() and
-      { "<leader>lg", function() require("snacks").lazygit() end, desc = "Lazygit" },
+      { "<leader>lg", function() require("snacks").lazygit() end, desc = "Lazygit" } or {},
       G.Helper.Dependencies.HasLazyGit() and
-      { "<leader>gl", function() require("snacks").lazygit.log() end, desc = "Lazygit Log" }
+      { "<leader>gl", function() require("snacks").lazygit.log() end, desc = "Lazygit Log" } or {},
+      { "<leader>fc", function() require("snacks").dashboard.pick('files', { cwd = vim.fn.stdpath('config') }) end, desc = "Search nvim configs" },
+      G.Plugins.toggle_term and
+      {
+        "<C-`>",
+        function() require("snacks").terminal.toggle() end,
+        mode = { "n", "i", "t", "x" },
+        desc = "Terminal: toggle below"
+      } or {},
     }
   },
   G.Helper.Dependencies.HasRipgrepExec() and {
