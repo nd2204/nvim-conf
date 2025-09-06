@@ -1,17 +1,4 @@
-local M = {}
-
-local PalleteKey = {
-  "bg_dim", "bg0", "bg1", "bg2", "bg3", "bg4", "bg5",
-  "bg_statusline1", "bg_statusline2", "bg_statusline3",
-  "bg_diff_green", "bg_visual_green", "bg_diff_red", "bg_visual_red",
-  "bg_diff_blue", "bg_visual_blue", "bg_visual_yellow", "bg_current_word",
-  "fg0", "fg1",
-  "red", "orange", "yellow", "green", "aqua", "blue", "purple",
-  "bg_red", "bg_yellow", "bg_green",
-  "grey0", "grey1", "grey2"
-}
-
-local DefaultPallete = {
+return {
   dark = {
     bg_dim = "#151515",
     bg0 = "#1B1B1B",
@@ -83,38 +70,3 @@ local DefaultPallete = {
     grey2 = "#7c6f64",
   }
 }
-
-M.GetPallete = function(mode)
-  return M.Pallete[string.lower(mode)]
-end
-
-M.SetPalette = function(pallete)
-  if M.PalleteValid(pallete) then
-    M.Pallete = pallete
-  end
-end
-
-M.PalleteValid = function(pallete)
-  if pallete.dark == nil or pallete.light == nil then
-    vim.notify("Palette does not contains light or dark variant")
-    return false
-  end
-  for i = 1, #PalleteKey do
-    local key = PalleteKey[i]
-    if pallete.dark[key] == nil or pallete.light[key] == nil then
-      vim.notify("Palette does not contain key: " .. key .. " or value is nil")
-      return false
-    end
-  end
-  return true
-end
-
-local themeOk, theme = pcall(require, "colorscheme." .. G.UI.Theme.Name);
-if themeOk then
-  M.SetPalette(theme)
-else
-  vim.notify("Theme " .. G.UI.Theme.Name .. " not found, falling back to default")
-  M.SetPallete(DefaultPallete)
-end
-
-return M;

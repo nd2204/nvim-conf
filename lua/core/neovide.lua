@@ -3,7 +3,7 @@ local colors = require("core.colors").GetPallete(G.UI.Theme.Mode)
 local opacity = G.UI.Theme.Transparent and 0.75 or 1.0
 
 if G.Helper.IsMac() then
-  vim.o.guifont = "RobotoMono Nerd Font:h14.5:b"
+  vim.o.guifont = "RobotoMono Nerd Font:h12.5:b"
   vim.g.neovide_show_border = true
   vim.g.neovide_floating_shadow = false
 elseif G.Helper.IsWin() then

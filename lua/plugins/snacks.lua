@@ -63,7 +63,7 @@ return {
       { "<leader>fc", function() require("snacks").dashboard.pick('files', { cwd = vim.fn.stdpath('config') }) end, desc = "Search nvim configs" },
       G.Plugins.toggle_term and
       {
-        "<C-`>",
+        G.Helper.IsMac() and "<C-\\>" or "<C-`>",
         function() require("snacks").terminal.toggle() end,
         mode = { "n", "i", "t", "x" },
         desc = "Terminal: toggle below"

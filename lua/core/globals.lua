@@ -9,7 +9,7 @@ G.Core = {
 
 G.UI = {
   Theme = {
-    Active = "gruvbox",
+    Name = "gruvbox", -- Name must match the filename in colorscheme
     Mode = "dark",
     Transparent = false,
     Dim = false,
