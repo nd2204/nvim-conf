@@ -7,9 +7,10 @@ if G.Helper.IsMac() then
   vim.g.neovide_show_border = true
   vim.g.neovide_floating_shadow = false
 elseif G.Helper.IsWin() then
-  vim.g.neovide_title_background_color = G.UI.Theme.Transparent and "none" or colors.bg0
-  vim.g.neovide_title_text_color = colors.fg0
-  vim.o.guifont = "RobotoMono Nerd Font:h9:b"
+  vim.g.neovide_title_background_color = G.UI.Theme.Transparent and "none" or colors.bg_dim
+  vim.g.neovide_title_text_color = colors.bg5
+  vim.o.guifont = "RobotoMono Nerd Font:h9.5:b"
+  -- vim.o.guifont = "RobotoMono Nerd Font:h12.0:b"
   vim.g.terminal_emulator = 'powershell'
 else
   vim.o.guifont = "RobotoMono Nerd Font:h9:b"
@@ -27,6 +28,6 @@ vim.g.neovide_floating_blur_amount_y = 2.0
 vim.g.neovide_remember_window_size = true
 
 vim.g.neovide_padding_top = 6
-vim.g.neovide_padding_bottom = 6
-vim.g.neovide_padding_right = 6
-vim.g.neovide_padding_left = 6
+vim.g.neovide_padding_bottom = 0
+vim.g.neovide_padding_right = 0
+vim.g.neovide_padding_left = 0
