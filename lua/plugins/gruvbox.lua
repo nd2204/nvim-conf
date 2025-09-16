@@ -4,6 +4,7 @@ return G.Plugins.Theme.gruvbox and {
   config = function()
     local colors = require("core.colors")
     local pallete = colors.Pallete
+    local IsLight = G.UI.Theme.Mode == "light"
     local mode = colors.GetPallete(G.UI.Theme.Mode)
     require("gruvbox").setup({
       terminal_colors = true, -- add neovim terminal colors
@@ -25,7 +26,37 @@ return G.Plugins.Theme.gruvbox and {
       contrast = "hard", -- can be "hard", "soft" or empty string
       dim_inactive = false,
       transparent_mode = G.UI.Theme.Transparent,
-      palette_overrides = {
+      palette_overrides = IsLight and {
+        dark0_hard    = pallete.light.fg0,
+        dark0         = pallete.light.fg1,
+        dark0_soft    = pallete.dark.bg1,
+        dark1         = pallete.dark.bg2,
+        dark2         = pallete.dark.bg3,
+        dark3         = pallete.dark.bg4,
+        dark4         = pallete.dark.bg5,
+        light0_hard   = pallete.light.bg0,
+        light0        = pallete.light.bg1,
+        light0_soft   = pallete.light.bg2,
+        light1        = pallete.light.bg3,
+        light2        = pallete.light.bg4,
+        light3        = pallete.light.bg5,
+        light4        = pallete.light.bg5,
+        bright_red    = pallete.dark.red,
+        bright_green  = pallete.dark.green,
+        bright_yellow = pallete.dark.yellow,
+        bright_blue   = pallete.dark.blue,
+        bright_purple = pallete.dark.purple,
+        bright_aqua   = pallete.dark.aqua,
+        bright_orange = pallete.dark.orange,
+        faded_red     = pallete.light.red,
+        faded_green   = pallete.light.green,
+        faded_yellow  = pallete.light.yellow,
+        faded_blue    = pallete.light.blue,
+        faded_purple  = pallete.light.purple,
+        faded_aqua    = pallete.light.aqua,
+        faded_orange  = pallete.light.orange,
+        gray          = pallete.light.grey0,
+      } or {
         dark0_hard    = pallete.dark.bg_dim,
         dark0         = pallete.dark.bg0,
         dark0_soft    = pallete.dark.bg1,
@@ -58,15 +89,21 @@ return G.Plugins.Theme.gruvbox and {
       },
       overrides = {
         -- Syntax
-        Include = { link = "GruvboxRed" },
-        Define = { link = "GruvboxPurple" },
-        PreProc = { link = "GruvboxPurple" },
-        PreCondit = { link = "GruvboxPurple" },
-        Macro = { link = "GruvboxPurple" },
-        Delimiter = { link = "GruvboxGray" },
-        LuaTable = { link = "GruvboxGray" },
-        DiagnosticUnneccessary = { link = "GruvboxGray" },
-        ["@namespace"] = { link = "GruvboxYellow" },
+        Include = pallete.highlights.Include or { link = "GruvboxRed" },
+        Define = pallete.highlights.Define or { link = "GruvboxPurple" },
+        PreProc = pallete.highlights.PreProc or { link = "GruvboxPurple" },
+        PreCondit = pallete.highlights.PreCondit or { link = "GruvboxPurple" },
+        Macro = pallete.highlights.Macro or { link = "GruvboxPurple" },
+        Delimiter = pallete.highlights.Delimiter or { link = "GruvboxGray" },
+        LuaTable = pallete.highlights.Luatable or { link = "GruvboxGray" },
+        DiagnosticUnneccessary = pallete.highlights.DiagnosticUnneccessary or { link = "GruvboxGray" },
+        ["@namespace"] = pallete.highlights["@namespace"] or { link = "GruvboxYellow" },
+        ["@field"] = pallete.highlights["@field"] or { link = "Identifier" },
+        ["@variable.member"] = pallete.highlights["@variable.member"] or { link = "Identifier" },
+        ["@variable.parameter"] = pallete.highlights["@variable.parameter"] or { link = "Identifier" },
+        ["@property"] = pallete.highlights["@property"] or { link = "Identifier" },
+        ["@tag"] = pallete.highlights["@tag"] or { link = "Tag" },
+        ["@comment"] = { fg = G.Helper.Color.Brighten(mode.aqua, 0.85), italic = true },
 
         -- UI
         GruvboxRedUnderline = {
@@ -155,7 +192,6 @@ return G.Plugins.Theme.gruvbox and {
 
         -- noice
         NoiceCmdlinePopupBorder = { link = "GruvboxGray" },
-
       },
     })
     vim.cmd("set background=" .. G.UI.Theme.Mode);

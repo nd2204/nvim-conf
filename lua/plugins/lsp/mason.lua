@@ -75,6 +75,25 @@ return {
             }
           }
         }
+      },
+      ["clangd"] = {
+        capabilities = capabilities,
+        cmd = {
+          "clangd",
+          "--background-index",
+        },
+        root_dir = lspconfig.util.root_pattern(
+          'build/compile_commands.json',
+          'bin/compile_commands.json',
+          '.git',
+          '.clangd',
+          '.clang-tidy',
+          '.clang-format',
+          'compile_commands.json',
+          'compile_flags.txt',
+          'configure.ac', -- AutoTools
+          '.git'
+        ),
       }
     }
 

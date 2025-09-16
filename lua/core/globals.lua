@@ -1,5 +1,7 @@
 G = {}
 
+local fmt = string.format
+
 G.Core = {
   Leader = " ",      -- Leader key
   LocalLeader = " ", -- Local leader key
@@ -87,6 +89,24 @@ G.Helper = {
           or vim.fn.executable("clang") == 1
           or vim.fn.executable("cl") == 1
           or vim.fn.executable("zig") == 1
+    end,
+  },
+  Color           = {
+    ClampColor = function(color)
+      return math.max(math.min(color, 255), 0)
+    end,
+    ToRgb = function(color)
+      assert(color, "color value is nil")
+      return tonumber(color:sub(2, 3), 16), tonumber(color:sub(4, 5), 16), tonumber(color:sub(6), 16)
+    end,
+    Brighten = function(color, percent)
+      assert(color, "color value is nil")
+      local r, g, b = G.Helper.Color.ToRgb(color)
+      r = G.Helper.Color.ClampColor(math.floor(r * percent))
+      g = G.Helper.Color.ClampColor(math.floor(g * percent))
+      b = G.Helper.Color.ClampColor(math.floor(b * percent))
+
+      return "#" .. fmt("%0x", r) .. fmt("%0x", g) .. fmt("%0x", b)
     end
   },
   Refresh         = function()

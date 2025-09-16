@@ -1,25 +1,13 @@
-local M = {}
-
-local PalleteKey = {
-  "bg_dim", "bg0", "bg1", "bg2", "bg3", "bg4", "bg5",
-  "bg_statusline1", "bg_statusline2", "bg_statusline3",
-  "bg_diff_green", "bg_visual_green", "bg_diff_red", "bg_visual_red",
-  "bg_diff_blue", "bg_visual_blue", "bg_visual_yellow", "bg_current_word",
-  "fg0", "fg1",
-  "red", "orange", "yellow", "green", "aqua", "blue", "purple",
-  "bg_red", "bg_yellow", "bg_green",
-  "grey0", "grey1", "grey2"
-}
-
-local DefaultPallete = {
+return {
   dark = {
-    bg_dim = "#151515",
-    bg0 = "#1B1B1B",
-    bg1 = "#222222",
-    bg2 = "#282828",
-    bg3 = "#32302f",
-    bg4 = "#3c3836",
-    bg5 = "#504945",
+    bg_dim = "#000000",
+    bg0 = "#000000",
+    bg1 = "#151515",
+    bg2 = "#1B1B1B",
+    bg3 = "#222222",
+    bg4 = "#282828",
+    bg5 = "#32302f",
+    -- bg5 = "#3c3836",
     bg_statusline1 = "#282828",
     bg_statusline2 = "#32302f",
     bg_statusline3 = "#504945",
@@ -81,45 +69,5 @@ local DefaultPallete = {
     grey0 = "#5F564F",
     grey1 = "#665C55",
     grey2 = "#7c6f64",
-  },
-  highlights = {}
+  }
 }
-
-M.GetPallete = function(mode)
-  return M.Pallete[string.lower(mode)]
-end
-
-M.SetPalette = function(pallete)
-  if M.PalleteValid(pallete) then
-    M.Pallete = pallete
-  end
-end
-
-M.PalleteValid = function(pallete)
-  if pallete.dark == nil or pallete.light == nil then
-    vim.notify("Palette does not contains light or dark variant")
-    return false
-  end
-  for i = 1, #PalleteKey do
-    local key = PalleteKey[i]
-    if pallete.dark[key] == nil or pallete.light[key] == nil then
-      vim.notify("Palette does not contain key: " .. key .. " or value is nil")
-      return false
-    end
-  end
-  if not pallete.highlights then
-    pallete.highlights = {}
-  end
-  return true
-end
-
-local themeOk, theme = pcall(require, "colorscheme." .. G.UI.Theme.Name);
-if themeOk then
-  M.SetPalette(theme)
-else
-  vim.notify("Theme " .. G.UI.Theme.Name .. " not found, falling back to default")
-  M.SetPallete(DefaultPallete)
-end
-
-
-return M;
