@@ -124,6 +124,11 @@ return {
           on_complete = { function() vim.cmd "stopinsert" end }
         })
       end
+      local list_workspace_diagnostics = function()
+        builtin.diagnostics({
+          on_complete = { function() vim.cmd "stopinsert" end }
+        })
+      end
 
       keymap('n', '<leader>fb', find_buffer, { desc = 'Telescope buffers' })
       keymap('n', '<leader>fh', help_tags, { desc = 'Telescope help tags' })
@@ -132,6 +137,7 @@ return {
       keymap('n', '<leader>fg', live_grep, { desc = 'Telescope live grep' })
       keymap('n', '<leader>ff', find_files, { desc = 'Telescope find files' })
       keymap('n', "<leader>fd", list_diagnostics, { desc = "Diagnostics" })
+      keymap('n', "<leader>fD", list_workspace_diagnostics, { desc = "Diagnostics (Workspace)" })
     end
   },
   G.Plugins.project and {
