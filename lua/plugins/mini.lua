@@ -12,13 +12,13 @@ return {
           go_out_plus = "H"
         }
       })
-      vim.keymap.set("n", "<leader>-", function()
+      vim.keymap.set("n", "<leader>e", function()
         MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
         MiniFiles.reveal_cwd()
-      end, { desc = "Toggle mini's file explorer" })
-      vim.keymap.set("n", "<leader>e", function()
-        MiniFiles.open()
       end, { desc = "Show parents directory" })
+      vim.keymap.set("n", "<leader>-", function()
+        MiniFiles.open()
+      end, { desc = "Toggle mini's file explorer" })
     end
   },
   G.Plugins.splitjoin and {
