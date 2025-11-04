@@ -16,7 +16,7 @@ return {
   },
   config = function()
     local cmp = require("cmp")
-    local luasnip = require("luasnip")
+    local has_luasnip, luasnip = pcall(require, "luasnip")
     local lspkind = require("lspkind")
     -- local colorize = require("tailwindcss-colorizer-cmp").formatter
 
@@ -245,9 +245,9 @@ return {
 
       -- NOTE: ! Experimenting with Customized Mappings ! --
       mapping = cmp.mapping.preset.insert({
-        -- ['<BS>'] = cmp.mapping(function(_fallback)
-        --     smart_bs()
-        -- end, { 'i', 's' }),
+        ['<BS>'] = cmp.mapping(function(_fallback)
+          smart_bs()
+        end, { 'i', 's' }),
 
         ["<C-e>"] = cmp.mapping.abort(), -- close completion window
         ['<C-d>'] = cmp.mapping(function()
@@ -281,10 +281,24 @@ return {
           end
         end, { 'i', 's' }),
 
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
+        ['<Tab>'] = cmp.mapping(function(_fallback)
           if cmp.visible() then
-            cmp.select_prev_item()
-          elseif has_luasnip and in_snippet() and luasnip.jumpable(-1) then
+            -- if there is only one completion candidate then use it.
+            local entries = cmp.get_entries()
+            if #entries == 1 then
+              confirm(entries[1])
+            end
+          elseif has_luasnip and luasnip.expand_or_locally_jumpable() then
+            luasnip.expand_or_jump()
+          elseif in_whitespace() then
+            smart_tab()
+          else
+            cmp.complete()
+          end
+        end, { 'i', 's' }),
+
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+          if has_luasnip and in_snippet() and luasnip.jumpable(-1) then
             luasnip.jump(-1)
           elseif in_leading_indent() then
             smart_bs(true) -- true means to dedent
@@ -295,30 +309,12 @@ return {
           end
         end, { 'i', 's' }),
 
-        ['<Tab>'] = cmp.mapping(function(_fallback)
-          if cmp.visible() then
-            -- if there is only one completion candidate then use it.
-            local entries = cmp.get_entries()
-            if #entries == 1 then
-              confirm(entries[1])
-            else
-              cmp.select_next_item()
-            end
-          elseif has_luasnip and luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          elseif in_whitespace() then
-            smart_tab()
-          else
-            cmp.complete()
-          end
-        end, { 'i', 's' }),
       }),
       -- setup lspkind for vscode pictograms in autocompletion dropdown menu
       formatting = {
         format = function(entry, vim_item)
           -- Add custom lsp_kinds icons
           vim_item.kind = string.format('%s %s', lsp_kinds[vim_item.kind] or '', vim_item.kind)
-
 
           -- add menu tags (e.g., [Buffer], [LSP])
           vim_item.menu = ({
