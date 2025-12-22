@@ -94,18 +94,27 @@ return {
           'configure.ac', -- AutoTools
           '.git'
         ),
+      },
+      ["dartls"] = {
+        capabilities = capabilities,
+        cmd = { "dart", "language-server", "--protocol=lsp" },
+        filetypes = { "dart" },
+        root_dir = lspconfig.util.root_pattern("pubspec.yaml"),
+        settings = {
+        }
       }
     }
 
-    local function setup_lsp(servers)
+    local function setup_lsp(servers_)
       local default_config = {
         capabilities = capabilities
       }
-      for server_name, opts in pairs(servers) do
+      for server_name, opts in pairs(servers_) do
         local config = vim.tbl_deep_extend("force", default_config, opts)
         lspconfig[server_name].setup(config)
       end
     end
+
 
     setup_lsp(servers)
   end
