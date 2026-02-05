@@ -16,7 +16,7 @@ local fn_open_global_config_file = function()
     {}
   )
 end
-
+vim.api.nvim_set_keymap('v', 'q', '<Esc>', { noremap = true, silent = true })
 keymap('n', 'J', 'mzJ`z', opts)
 keymap('n', '<Space>', '<NOP>', opts)
 keymap('n', '<ESC>', ':nohlsearch<CR>', opts)

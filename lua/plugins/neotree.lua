@@ -10,6 +10,6 @@ return G.Plugins.neotree and {
   lazy = false, -- neo-tree will lazily load itself
   config = function()
     require("neo-tree").setup({})
-    vim.keymap.set("n", "<leader>e", "<CMD>Neotree toggle<CR>", { desc = "Open File Explorer" })
+    vim.keymap.set("n", "<leader>E", "<CMD>Neotree toggle<CR>", { desc = "Open File Explorer" })
   end
 } or {}

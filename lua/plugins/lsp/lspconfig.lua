@@ -13,7 +13,9 @@ return {
         local map = vim.keymap.set
 
         opts.desc = "Show LSP reference"
-        map("n", "<leader>lr", "<CMD>Telescope lsp_references<CR>", opts)
+        map("n", "<leader>lR", "<CMD>Telescope lsp_references<CR>", opts)
+        opts.desc = "Smart rename"
+        map({ "n", "v" }, "<leader>lr", vim.lsp.buf.rename, opts)
 
         opts.desc = "Go to declaration"
         map("n", "<leader>lD", vim.lsp.buf.declaration, opts)
@@ -33,11 +35,11 @@ return {
         opts.desc = "Show LSP type definitions"
         map("n", "<leader>lt", "<CMD>Telescope lsp_type_definitions<CR>", opts)
 
+        opts.desc = "Show LSP document symbols"
+        map("n", "<leader>ls", "<CMD>Telescope lsp_document_symbols<CR>", opts)
+
         opts.desc = "See available code actions"
         map({ "n", "v" }, "<leader>la", function() vim.lsp.buf.code_action() end, opts)
-
-        opts.desc = "Smart rename"
-        map({ "n", "v" }, "<leader>lR", vim.lsp.buf.rename, opts)
 
         opts.desc = "Show documentation for what is under the cursor"
         map("n", "K", vim.lsp.buf.hover, opts)
